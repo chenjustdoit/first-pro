@@ -1,0 +1,56 @@
+4.
+def longestPalindrome(s):
+    i = l = len(s)
+    while i <= l:
+        print('i=', i, 'l=', l)
+        j = 0
+        k = 0
+        while j<=l-i:
+            record = 1
+            print('i=', i, 'j=', j, 'k=', k)
+            while k <= int(i / 2):
+                print('k=',k)
+                if s[j + k] != s[j + i - k - 1]:
+                    record = 0
+                    print('record=',record)
+                    break
+                k += 1
+            if record == 1:
+                print('over','i=',i,'j=',j,'k=',k)
+                return s[j:j + i]
+            j +=1
+        i -= 1
+
+
+select d.Name as Department,e.Name as Employee,e.Salary
+from Employee as e JOIN Department as d ON e.DepartmentId = d.Id,
+    (   SELECT
+            DepartmentId, Salary
+        FROM
+            Employee
+        where DepartmentId=w.DepartmentId
+        limit 1 offset 2
+    ) as ts
+where e.Salary>=ts.Salary
+group by d.Name;
+
+
+
+15.class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
+        nums2=[]
+        n=0
+        for i in range(len(nums)):
+            if i+1<len(nums):
+                for j in range(i+1,len(nums)):
+                    if j+1<len(nums) and:
+                        for k in range(j+1,len(nums)):
+                            if nums[i]+nums[j]+nums[k]==0:
+                                if n==0:
+                                    nums2.append([nums[i],nums[j],nums[k]])
+                                    n+=1
+                                elif nums2[n-1][0]!=nums[i] or nums2[n-1][1]!=nums[j] or nums2[n-1][2]!=nums[k]:
+                                    nums2.append([nums[i],nums[j],nums[k]])
+                                    n+=1
+        return nums2
